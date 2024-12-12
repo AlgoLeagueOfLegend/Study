@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
+// BOJ_15651 N과 M (3)
 public class BOJ_15651 {
     static int N, M;
     static int[] numbers;
