@@ -45,35 +45,35 @@ public class BOJ_14391 {
 		dfs(x, y + 1, score + arr[x][y]);
 
 		// 가로로 선택
-		for (int i = 1; i < M; i++) {
+		int tmpScore = arr[x][y], i;
+		for (i = 1; i < M; i++) {
 			if (y + i >= M || visited[x][y + i])
 				break;
 
-			int tmpScore = arr[x][y];
-			for (int j = 1; j <= i; j++) {
-				tmpScore = tmpScore * 10 + arr[x][y + j];
-				visited[x][y + i] = true;
-			}
+			tmpScore = tmpScore * 10 + arr[x][y + i];
+			visited[x][y + i] = true;
 			dfs(x, y + i + 1, score + tmpScore);
-			for (int j = 1; j <= i; j++) {
-				visited[x][y + j] = false;
-			}
+		}
+
+		// 방문 해제
+		for (int j = 1; j < i; j++) {
+			visited[x][y + j] = false;
 		}
 
 		// 세로로 선택
-		for (int i = 1; i < N; i++) {
+		tmpScore = arr[x][y];
+		for (i = 1; i < N; i++) {
 			if (x + i >= N || visited[x + i][y])
 				break;
 
-			int tmpScore = arr[x][y];
-			for (int j = 1; j <= i; j++) {
-				tmpScore = tmpScore * 10 + arr[x + j][y];
-				visited[x + j][y] = true;
-			}
+			tmpScore = tmpScore * 10 + arr[x + i][y];
+			visited[x + i][y] = true;
 			dfs(x, y + 1, score + tmpScore);
-			for (int j = 1; j <= i; j++) {
-				visited[x + j][y] = false;
-			}
+		}
+
+		// 방문 해제
+		for (int j = 1; j < i; j++) {
+			visited[x + j][y] = false;
 		}
 		visited[x][y] = false;
 	}
